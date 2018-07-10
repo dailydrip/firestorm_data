@@ -19,7 +19,7 @@ defmodule FirestormData.Users.User do
         }
 
   @primary_key {:id, :binary_id, autogenerate: true}
-  schema "users_users" do
+  schema "firestorm_users_users" do
     field(:email, :string)
     field(:name, :string)
     field(:username, :string)

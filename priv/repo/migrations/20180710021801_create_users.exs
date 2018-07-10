@@ -2,7 +2,7 @@ defmodule FirestormData.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do
-    create table(:users_users, primary_key: false) do
+    create table(:firestorm_users_users, primary_key: false) do
       add(:id, :uuid, primary_key: true)
       add(:username, :string)
       add(:email, :string)
@@ -13,6 +13,6 @@ defmodule FirestormData.Repo.Migrations.CreateUsers do
       timestamps()
     end
 
-    create(unique_index(:users_users, [:username]))
+    create(unique_index(:firestorm_users_users, [:username]))
   end
 end
