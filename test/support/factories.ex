@@ -9,7 +9,8 @@ defmodule FirestormData.Factory do
     %User{
       name: Faker.Name.name(),
       email: sequence(:email, &"email-#{&1}@example.com"),
-      username: Faker.Internet.user_name()
+      username: Faker.Internet.user_name(),
+      api_token: UUID.uuid4()
     }
   end
 end

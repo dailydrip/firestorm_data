@@ -39,5 +39,17 @@ defmodule FirestormData.Users do
     end
   end
 
+  @spec delete_user(User.t()) :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
+  def delete_user(user = %User{}) do
+    Repo.delete(user)
+  end
+
+  @spec update_user(User.t(), map()) :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
+  def update_user(user = %User{}, attrs) do
+    user
+    |> User.changeset(attrs)
+    |> Repo.update()
+  end
+
   defp generate_api_token(), do: UUID.uuid4()
 end
