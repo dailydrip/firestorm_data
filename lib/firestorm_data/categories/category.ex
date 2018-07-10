@@ -11,6 +11,7 @@ defmodule FirestormData.Categories.Category do
   }
 
   @type t :: %Category{
+          id: String.t(),
           title: String.t(),
           slug: String.t(),
           inserted_at: DateTime.t(),
