@@ -3,7 +3,8 @@ defmodule FirestormData.Factory do
 
   alias FirestormData.{
     Users.User,
-    Categories.Category
+    Categories.Category,
+    Threads.Thread
   }
 
   def user_factory do
@@ -19,6 +20,14 @@ defmodule FirestormData.Factory do
     %Category{
       title: Faker.Lorem.sentence(),
       slug: Faker.Internet.slug()
+    }
+  end
+
+  def thread_factory do
+    %Thread{
+      title: Faker.Lorem.sentence(),
+      category: insert(:category),
+      user: insert(:user)
     }
   end
 end

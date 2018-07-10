@@ -4,12 +4,6 @@ defmodule FirestormData.CategoriesTest do
   import FirestormData.Categories
   alias FirestormData.Categories.Category
 
-  # test "list_categories/1 returns all categories" do
-  #   category = insert(:category)
-  #   assert list_categories() == [category]
-  # end
-
-  #
   test "get_category! returns the category with given id" do
     category = insert(:category)
     assert get_category(category.id) == {:ok, category}

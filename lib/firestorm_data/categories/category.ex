@@ -3,8 +3,7 @@ defmodule FirestormData.Categories.Category do
   Schema for forum categories.
   """
 
-  use Ecto.Schema
-  import Ecto.Changeset, warn: false
+  use FirestormData.Data, :model
 
   alias FirestormData.Categories.{
     CategoryTitleSlug,

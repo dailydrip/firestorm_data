@@ -3,8 +3,7 @@ defmodule FirestormData.Users.User do
   Schema for forum users.
   """
 
-  use Ecto.Schema
-  import Ecto.Changeset, warn: false
+  use FirestormData.Data, :model
   alias FirestormData.Users.User
 
   @type t :: %User{
@@ -18,7 +17,6 @@ defmodule FirestormData.Users.User do
           updated_at: DateTime.t()
         }
 
-  @primary_key {:id, :binary_id, autogenerate: true}
   schema "firestorm_users_users" do
     field(:email, :string)
     field(:name, :string)
