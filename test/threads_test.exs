@@ -12,7 +12,8 @@ defmodule FirestormData.ThreadsTest do
 
   test "get_thread returns the thread with given id", %{category: category, user: user} do
     thread = insert(:thread, user: user, category: category)
-    assert get_thread(category, thread.id) == {:ok, thread}
+    {:ok, returned_thread} = get_thread(category, thread.id)
+    assert returned_thread.id == thread.id
   end
 
   test "create_thread/2 with valid data creates a thread and its first post", %{

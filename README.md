@@ -1,6 +1,7 @@
 # FirestormData
 
-**TODO: Add description**
+This is the data layer for [Firestorm Forum](https://www.firestormforum.org). It contains the core
+data models and API for interacting with them.
 
 ## Installation
 
