@@ -14,8 +14,8 @@ defmodule FirestormData.Posts.Post do
   @type t :: %Post{
           id: String.t(),
           body: String.t(),
-          thread: Thread.t() | Ecto.Association.NotLoaded.t(),
-          user: User.t() | Ecto.Association.NotLoaded.t(),
+          thread: Thread.t() | %Ecto.Association.NotLoaded{},
+          user: User.t() | %Ecto.Association.NotLoaded{},
           oembeds: nil | [term()],
           inserted_at: DateTime.t(),
           updated_at: DateTime.t()

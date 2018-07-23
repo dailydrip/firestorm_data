@@ -6,11 +6,21 @@ defmodule FirestormData.Threads.Thread do
   use FirestormData.Data, :model
 
   alias FirestormData.{
+    Threads.Thread,
     Categories.Category,
     Users.User,
     Threads.ThreadTitleSlug
   }
 
+  @type t :: %Thread{
+          id: String.t(),
+          title: String.t(),
+          slug: String.t(),
+          category: Category.t() | %Ecto.Association.NotLoaded{},
+          user: User.t() | %Ecto.Association.NotLoaded{},
+          inserted_at: DateTime.t(),
+          updated_at: DateTime.t()
+        }
   schema "firestorm_threads_threads" do
     field(:title, :string)
     field(:slug, ThreadTitleSlug.Type)

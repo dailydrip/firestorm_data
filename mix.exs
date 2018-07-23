@@ -34,9 +34,12 @@ defmodule FirestormData.MixProject do
       {:timex, "~> 3.3"},
       {:comeonin, "~> 4.1"},
       {:bcrypt_elixir, "~> 1.0"},
+      ### DEVELOPMENT AND TEST DEPENDENCIES
       # We want to use factories to create test data
       {:ex_machina, "~> 2.2", only: :test},
-      {:faker, "~> 0.10", only: :test}
+      # We want reasonable-ish fake data
+      {:faker, "~> 0.10", only: :test},
+      {:dialyxir, "~> 0.5.1", only: [:dev, :test]}
     ]
   end
 
