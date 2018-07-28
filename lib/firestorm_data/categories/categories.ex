@@ -9,6 +9,28 @@ defmodule FirestormData.Categories do
   }
 
   @doc """
+  Finds a category by name
+
+  ## Examples
+
+      iex> find_category(%{title: "Elixir"})
+      {:ok, %Category{}}
+
+      iex> find_category(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  @spec find_category(map()) :: {:ok, Category.t()} | {:error, :no_such_category}
+  def find_category(attrs \\ %{}) do
+    Category
+    |> Repo.get_by(attrs)
+    |> case do
+      nil -> {:error, :no_such_category}
+      category -> {:ok, category}
+    end
+  end
+
+  @doc """
   Creates a category.
 
   ## Examples

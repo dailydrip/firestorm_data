@@ -3,6 +3,8 @@ defmodule FirestormData.Posts do
   Posts exist on Threads
   """
 
+  import Ecto.Query
+
   alias FirestormData.{
     Repo,
     Posts.Post,
@@ -31,5 +33,12 @@ defmodule FirestormData.Posts do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def list_posts(%Thread{id: thread_id}) do
+    Post
+    |> where([p], p.thread_id == ^thread_id)
+    |> order_by([p], desc: p.inserted_at)
+    |> Repo.all()
   end
 end

@@ -7,6 +7,7 @@ defmodule FirestormData.Threads.Thread do
 
   alias FirestormData.{
     Threads.Thread,
+    Posts.Post,
     Categories.Category,
     Users.User,
     Threads.ThreadTitleSlug
@@ -17,6 +18,7 @@ defmodule FirestormData.Threads.Thread do
           title: String.t(),
           slug: String.t(),
           category: Category.t() | %Ecto.Association.NotLoaded{},
+          posts: [Post.t()] | %Ecto.Association.NotLoaded{},
           user: User.t() | %Ecto.Association.NotLoaded{},
           inserted_at: DateTime.t(),
           updated_at: DateTime.t()
@@ -29,7 +31,7 @@ defmodule FirestormData.Threads.Thread do
     # field(:completely_read?, :boolean, virtual: true)
     belongs_to(:category, Category)
     belongs_to(:user, User)
-    # has_many(:posts, Post)
+    has_many(:posts, Post)
     # has_many(:watches, {"forums_threads_watches", Watch}, foreign_key: :assoc_id)
 
     # many_to_many(
@@ -51,14 +53,13 @@ defmodule FirestormData.Threads.Thread do
   end
 
   def new_changeset(%{thread: thread_attrs, post: post_attrs}) do
-    # post_changeset =
-    #   %Post{}
-    #   |> cast(post_attrs, [:body, :user_id])
-    #   |> validate_required([:body, :user_id])
+    post_changeset =
+      %Post{}
+      |> cast(post_attrs, [:body, :user_id])
+      |> validate_required([:body, :user_id])
 
     %__MODULE__{}
     |> changeset(thread_attrs)
-
-    # |> put_assoc(:posts, [post_changeset])
+    |> put_assoc(:posts, [post_changeset])
   end
 end

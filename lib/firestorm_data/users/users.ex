@@ -39,6 +39,16 @@ defmodule FirestormData.Users do
     end
   end
 
+  @spec find_user(map()) :: {:ok, User.t()} | {:error, :no_such_user}
+  def find_user(attrs \\ %{}) do
+    User
+    |> Repo.get_by(attrs)
+    |> case do
+      nil -> {:error, :no_such_user}
+      user -> {:ok, user}
+    end
+  end
+
   @spec delete_user(User.t()) :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
   def delete_user(user = %User{}) do
     Repo.delete(user)
