@@ -28,10 +28,13 @@ defmodule FirestormData.Users.User do
     timestamps()
   end
 
+  @required_fields ~w(email api_token)a
+  @optional_fields ~w(username name)
+
   def changeset(%__MODULE__{} = user, attrs \\ %{}) do
     user
-    |> cast(attrs, [:username, :email, :name, :api_token])
-    |> validate_required([:username, :name, :api_token])
+    |> cast(attrs, @required_fields ++ @optional_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint(:username)
   end
 
