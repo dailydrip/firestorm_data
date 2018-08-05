@@ -11,7 +11,11 @@ defmodule FirestormData.Slugs.TitleSlug do
       import Ecto.Query
 
       def build_slug(sources) do
-        base_slug = super(sources)
+        base_slug =
+          sources
+          |> super()
+          |> strip_for_db()
+
         get_unused_slug(base_slug, 0)
       end
 
@@ -35,6 +39,13 @@ defmodule FirestormData.Slugs.TitleSlug do
 
       def get_slug(base_slug, number) do
         "#{base_slug}-#{number}"
+      end
+
+      defp strip_for_db(maybe_not_utf) do
+        for <<char::8 <- maybe_not_utf>>, char > 32, char < 122 do
+          char
+        end
+        |> to_string()
       end
     end
   end

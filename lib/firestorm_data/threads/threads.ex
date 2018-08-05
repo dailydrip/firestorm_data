@@ -30,6 +30,26 @@ defmodule FirestormData.Threads do
   end
 
   @doc """
+  Gets a thread by id
+
+  ## Examples
+
+      iex> get_thread("123")
+      {:ok, %Thread{}}
+
+      iex> get_thread("nope")
+      {:error, :no_such_thread}
+
+  """
+  @spec get_thread(String.t()) :: {:ok, Thread.t()} | {:error, :no_such_thread}
+  def get_thread(id) do
+    case Repo.get_by(Thread, id: id) do
+      nil -> {:error, :no_such_thread}
+      thread -> {:ok, thread}
+    end
+  end
+
+  @doc """
   Creates a thread.
 
   ## Examples
