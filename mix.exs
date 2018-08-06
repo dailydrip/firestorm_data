@@ -1,7 +1,7 @@
 defmodule FirestormData.MixProject do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.1.1"
   @description """
   FirestormData is the data layer for the Firestorm Forum.
   """
