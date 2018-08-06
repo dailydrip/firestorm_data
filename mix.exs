@@ -2,16 +2,34 @@ defmodule FirestormData.MixProject do
   use Mix.Project
 
   @version "0.1.0"
+  @description """
+  FirestormData is the data layer for the Firestorm Forum.
+  """
 
   def project do
     [
       app: :firestorm_data,
+      package: package(),
+      description: @description,
       version: @version,
-      elixir: "~> 1.6",
+      elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
       aliases: aliases(),
+      source_url: "https://www.github.com/dailydrip/firestorm_data",
+      homepage_url: "https://www.firestormforum.org",
       deps: deps()
+    ]
+  end
+
+  defp package do
+    [
+      maintainers: ["Josh Adams"],
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/dailydrip/firestorm_data",
+        "Website" => "https://www.firestormforum.org"
+      }
     ]
   end
 
@@ -41,7 +59,9 @@ defmodule FirestormData.MixProject do
       {:ex_machina, "~> 2.2", only: :test},
       # We want reasonable-ish fake data
       {:faker, "~> 0.10", only: :test},
-      {:dialyxir, "~> 0.5.1", only: [:dev, :test]}
+      {:dialyxir, "~> 0.5.1", only: [:dev, :test]},
+      # Generate documentation
+      {:ex_doc, "~> 0.14", only: :dev}
     ]
   end
 
